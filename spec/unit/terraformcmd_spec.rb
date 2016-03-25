@@ -35,10 +35,10 @@ module RakeTerraform
       end
 
       describe 'tf_plan' do
-        let(:default_plan_cmd) { 'terraform plan -module-depth 2' }
+        let(:default_plan_cmd) { 'terraform plan -module-depth -1' }
         let(:default_output_file) { "#{PROJECT_ROOT}/output/terraform/plan.tf" }
         let(:output_plan_cmd) do
-          "terraform plan -module-depth 2 -out #{default_output_file}"
+          "terraform plan -module-depth -1 -out #{default_output_file}"
         end
         let(:module_arg_cmd) { 'terraform plan -module-depth 56' }
         let(:module_arg) { 56 }
@@ -48,7 +48,7 @@ module RakeTerraform
           "#{PROJECT_ROOT}/terraform/test_env/state_1.tfstate"
         end
         let(:state_file_cmd) do
-          "terraform plan -module-depth 2 -state #{state_file}"
+          "terraform plan -module-depth -1 -state #{state_file}"
         end
         context 'with no arguments' do
           it 'should call terraform plan' do
@@ -83,7 +83,7 @@ module RakeTerraform
       describe 'tf_show' do
         let(:default_plan_file) { "#{PROJECT_ROOT}/output/terraform/plan.tf" }
         let(:default_show_cmd) do
-          "terraform show -module-depth 2 #{default_plan_file}"
+          "terraform show -module-depth -1 #{default_plan_file}"
         end
         let(:module_arg_cmd) do
           "terraform show -module-depth 56 #{default_plan_file}"

@@ -15,7 +15,7 @@ module RakeTerraform
     end
 
     # perform a 'terraform plan'
-    def tf_plan(output_file = nil, state_file = nil, module_depth = 2)
+    def tf_plan(output_file = nil, state_file = nil, module_depth = -1)
       cmd = 'terraform plan'
       cmd << " -module-depth #{module_depth}"
       state_file && cmd << " -state #{state_file}"
@@ -25,7 +25,7 @@ module RakeTerraform
 
     # perform a 'terraform show'
     #
-    def tf_show(plan_file, module_depth = 2)
+    def tf_show(plan_file, module_depth = -1)
       cmd = 'terraform show'
       cmd << " -module-depth #{module_depth}"
       cmd << " #{plan_file}"
